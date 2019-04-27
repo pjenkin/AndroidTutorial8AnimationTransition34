@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.TransitionManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         View pnjButton = findViewById(R.id.pnj_button);
         View pnjConstraintLayout = findViewById(R.id.pnj_layout);
 
+        TransitionManager.beginDelayedTransition(pnjLayout);
+        // in lieu of further specification, default animation transition will be used
+
         // 1) reposition button 2) resize button
 
         // video's code using RelativeLayout
@@ -78,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         constraintSet.connect(R.id.pnj_button, ConstraintSet.RIGHT, R.id.pnj_layout, ConstraintSet.RIGHT);
         // stick right of button to right of layout
         constraintSet.applyTo(constraintLayout);
+
+        // https://stackoverflow.com/a/45264822/11365317
 
         // 2) Resize button
         ViewGroup.LayoutParams sizeRules = pnjButton.getLayoutParams();
