@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,17 +62,28 @@ public class MainActivity extends AppCompatActivity {
 
         // 1) reposition button 2) resize button
 
-        // video's code using RelativeLayout
+        // video's code using RelativeLayout - won't like being fudged to fit ConstraintLayout :-(
+
+//        RelativeLayout.LayoutParams positionRules = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        // width & height
+//
+//        positionRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+//        positionRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+        
+        
+        // trying ConstraintLayout explicitly won't go well either :-(
 //        ConstraintLayout.LayoutParams positionRules = new ConstraintLayout.LayoutParams(
 //                ConstraintLayout.LayoutParams.WRAP_CONTENT,
 //                ConstraintLayout.LayoutParams.WRAP_CONTENT);
 //        // width & height
 //
-//        positionRules.addRule(ConstraintLayout.TEXT_ALIGNMENT_TEXT_END, ConstraintLayout.TR);
+//        positionRules.addRule(ConstraintLayout.TEXT_ALIGNMENT_TEXT_END, ConstraintLayout.TRUE);
 //        positionRules.addRule(ConstraintLayout.TEXT_ALIGNMENT_TEXT_END);
+        // none of this will work
 
-
-        // if using new-fangled ConstraintLayout instead of RelativeLayout
+        // if using new-fangled ConstraintLayout instead of RelativeLayout ...
         // 1) Reposition button
         ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.pnj_layout);
 
@@ -90,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
         sizeRules.width = 450;
         sizeRules.height = 300;
         pnjButton.setLayoutParams(sizeRules);
-
     }
 
     @Override
